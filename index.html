@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona Gamer | Tu universo de videojuegos</title>
+  <style>
+    :root { --bg:#0b1020; --panel:#151d33; --text:#f4f7ff; --muted:#aeb8d4; --accent:#7c5cff; --cyan:#27e0d0; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, sans-serif; background:linear-gradient(140deg,#080c18,#111b35); color:var(--text); }
+    header { padding:28px 7%; background:#10172a; border-bottom:2px solid var(--accent); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+    .logo { font-size:1.6rem; font-weight:800; letter-spacing:1px; }
+    .logo span { color:var(--cyan); }
+    nav a { color:var(--text); text-decoration:none; margin:0 10px; font-weight:bold; }
+    nav a:hover { color:var(--cyan); }
+    .hero { padding:65px 7% 50px; text-align:center; }
+    .hero h1 { font-size:clamp(2rem,5vw,3.8rem); margin:0 0 14px; }
+    .hero h1 span { color:var(--cyan); }
+    .hero p { max-width:700px; margin:0 auto 24px; color:var(--muted); line-height:1.6; }
+    .button { border:0; border-radius:9px; padding:12px 18px; background:var(--accent); color:white; font-weight:bold; cursor:pointer; }
+    .button:hover { filter:brightness(1.15); transform:translateY(-1px); }
+    .section { padding:25px 7% 45px; }
+    .section h2 { margin-bottom:8px; }
+    .section-intro { color:var(--muted); margin-top:0; }
+    .games { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:22px; }
+    .card { background:var(--panel); border:1px solid #293657; border-radius:14px; overflow:hidden; transition:transform .2s,border-color .2s; }
+    .card:hover { transform:translateY(-5px); border-color:var(--cyan); }
+    .cover { height:120px; display:grid; place-items:center; font-size:2.8rem; background:linear-gradient(135deg,#392d77,#176a78); }
+    .card-content { padding:17px; }
+    .tag { display:inline-block; padding:4px 8px; background:#263354; border-radius:20px; color:var(--cyan); font-size:.78rem; }
+    .card p { color:var(--muted); line-height:1.45; min-height:62px; }
+    .card button { width:100%; }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+    .filters button { background:#222d49; border:1px solid #38486d; color:white; border-radius:20px; padding:8px 13px; cursor:pointer; }
+    .filters button.active { background:var(--cyan); color:#07121b; }
+    .form-box { max-width:650px; background:var(--panel); padding:24px; border-radius:14px; border:1px solid #293657; }
+    label { display:block; margin:14px 0 6px; font-weight:bold; }
+    input[type="text"], input[type="email"], select, textarea { width:100%; padding:11px; border-radius:8px; border:1px solid #526184; background:#0d1427; color:white; font:inherit; }
+    .check-row { display:flex; gap:9px; align-items:center; margin:12px 0; }
+    .radio-row { display:flex; gap:16px; flex-wrap:wrap; margin:9px 0 15px; }
+    .notice { margin-top:15px; color:var(--cyan); min-height:22px; }
+    footer { padding:25px 7%; background:#080c18; color:var(--muted); text-align:center; border-top:1px solid #293657; }
+    .hidden { display:none !important; }
+    @media (max-width:600px) { header { align-items:flex-start; } nav a { display:inline-block; margin:7px 10px 0 0; } .hero { padding-top:45px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ZONA <span>GAMER</span> 🎮</div>
+    <nav aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a><a href="#juegos">Juegos</a><a href="#comunidad">Comunidad</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <h1>Tu siguiente aventura <span>empieza aquí</span></h1>
+      <p>Descubre juegos, explora distintos géneros y comparte qué tipo de experiencias te gustan. Una página creada para la comunidad gamer.</p>
+      <button class="button" id="exploreBtn" type="button">Explorar juegos</button>
+    </section>
+
+    <section class="section" id="juegos">
+      <h2>Juegos destacados</h2>
+      <p class="section-intro">Filtra por género o abre una ficha para conocer más.</p>
+      <div class="filters" aria-label="Filtrar juegos">
+        <button class="active" type="button" data-filter="todos">Todos</button>
+        <button type="button" data-filter="accion">Acción</button>
+        <button type="button" data-filter="terror">Terror</button>
+        <button type="button" data-filter="aventura">Aventura</button>
+      </div>
+      <div class="games" id="gameList">
+        <article class="card" data-category="accion">
+          <div class="cover" aria-hidden="true">🦇</div>
+          <div class="card-content"><span class="tag">Acción</span><h3>Héroes de la noche</h3><p>Combate, sigilo y desafíos en una ciudad llena de secretos.</p><button class="button detailsBtn" type="button" data-title="Héroes de la noche" data-info="Un juego de acción ficticio centrado en el sigilo, la exploración y los desafíos urbanos.">Ver detalles</button></div>
+        </article>
+        <article class="card" data-category="terror">
+          <div class="cover" aria-hidden="true">🤖</div>
+          <div class="card-content"><span class="tag">Terror</span><h3>Turno de medianoche</h3><p>Sobrevive a una noche misteriosa y administra tus recursos.</p><button class="button detailsBtn" type="button" data-title="Turno de medianoche" data-info="Una experiencia ficticia de terror y estrategia donde debes observar, planear y administrar recursos.">Ver detalles</button></div>
+        </article>
+        <article class="card" data-category="aventura">
+          <div class="cover" aria-hidden="true">🌌</div>
+          <div class="card-content"><span class="tag">Aventura</span><h3>Frontera estelar</h3><p>Explora mundos desconocidos, resuelve misterios y toma decisiones.</p><button class="button detailsBtn" type="button" data-title="Frontera estelar" data-info="Una aventura ficticia de exploración espacial, acertijos y decisiones que cambian el recorrido.">Ver detalles</button></div>
+        </article>
+      </div>
+      <p id="filterStatus" class="notice" aria-live="polite"></p>
+    </section>
+
+    <section class="section" id="comunidad">
+      <h2>Únete a la comunidad</h2>
+      <p class="section-intro">Completa el formulario de demostración para registrar tus preferencias localmente.</p>
+      <div class="form-box">
+        <form id="gamerForm">
+          <label for="gamerName">Tu apodo</label>
+          <input type="text" id="gamerName" name="gamerName" placeholder="Ej. PlayerOne" required>
+
+          <label for="gamerEmail">Correo (opcional)</label>
+          <input type="email" id="gamerEmail" name="gamerEmail" placeholder="nombre@ejemplo.com">
+
+          <label for="favoriteGenre">Género favorito</label>
+          <select id="favoriteGenre" name="favoriteGenre" required>
+            <option value="">Selecciona un género</option>
+            <option>Acción</option><option>Terror</option><option>Aventura</option><option>Deportes</option><option>Estrategia</option>
+          </select>
+
+          <div class="check-row">
+            <input type="checkbox" id="newsCheck" name="newsCheck">
+            <label for="newsCheck" style="display:inline;margin:0;font-weight:normal">Quiero recibir novedades (demostración)</label>
+          </div>
+
+          <p><strong>¿Qué plataforma prefieres?</strong></p>
+          <div class="radio-row">
+            <label><input type="radio" name="platform" value="PC" required> PC</label>
+            <label><input type="radio" name="platform" value="Consola"> Consola</label>
+            <label><input type="radio" name="platform" value="Móvil"> Móvil</label>
+          </div>
+
+          <label for="gamerComment">¿Qué te gustaría ver en la página?</label>
+          <textarea id="gamerComment" name="gamerComment" rows="3" placeholder="Escribe una sugerencia..."></textarea>
+          <button class="button" type="submit">Enviar preferencias</button>
+          <button class="button" type="reset" style="background:#42506e;margin-left:6px">Limpiar</button>
+          <p class="notice" id="formMessage" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer>Zona Gamer · Proyecto escolar de HTML, CSS y JavaScript</footer>
+
+  <dialog id="detailsDialog">
+    <h2 id="dialogTitle">Detalles del juego</h2>
+    <p id="dialogInfo"></p>
+    <button class="button" id="closeDialog" type="button">Cerrar</button>
+  </dialog>
+
+  <script>
+    // Selección de elementos del documento para interactuar con la página.
+    const exploreBtn = document.getElementById("exploreBtn");
+    const gameSection = document.getElementById("juegos");
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const gameCards = document.querySelectorAll(".card");
+    const filterStatus = document.getElementById("filterStatus");
+    const detailsButtons = document.querySelectorAll(".detailsBtn");
+    const detailsDialog = document.getElementById("detailsDialog");
+    const dialogTitle = document.getElementById("dialogTitle");
+    const dialogInfo = document.getElementById("dialogInfo");
+    const closeDialog = document.getElementById("closeDialog");
+    const gamerForm = document.getElementById("gamerForm");
+    const formMessage = document.getElementById("formMessage");
+
+    // Evento onclick: desplaza la pantalla a la sección de juegos.
+    exploreBtn.onclick = function () {
+      gameSection.scrollIntoView({ behavior: "smooth" });
+    };
+
+    // Eventos click: filtran las tarjetas según su categoría.
+    filterButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const selectedFilter = button.dataset.filter;
+        filterButtons.forEach(function (item) { item.classList.remove("active"); });
+        button.classList.add("active");
+        gameCards.forEach(function (card) {
+          const showCard = selectedFilter === "todos" || card.dataset.category === selectedFilter;
+          card.classList.toggle("hidden", !showCard);
+        });
+        filterStatus.textContent = selectedFilter === "todos"
+          ? "Se muestran todos los juegos."
+          : "Filtro aplicado: " + button.textContent + ".";
+      });
+    });
+
+    // Evento mousedown: da una respuesta visual cuando se presiona una tarjeta.
+    gameCards.forEach(function (card) {
+      card.addEventListener("mousedown", function () {
+        card.style.boxShadow = "0 0 0 2px #27e0d0";
+      });
+      card.addEventListener("mouseup", function () {
+        card.style.boxShadow = "";
+      });
+    });
+
+    // Evento onfocus: resalta el campo que está recibiendo el foco.
+    document.querySelectorAll("input, select, textarea").forEach(function (field) {
+      field.onfocus = function () {
+        field.style.outline = "2px solid #27e0d0";
+      };
+      field.addEventListener("blur", function () {
+        field.style.outline = "";
+      });
+    });
+
+    // Los botones de detalle abren una ventana con información del juego.
+    detailsButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        dialogTitle.textContent = button.dataset.title;
+        dialogInfo.textContent = button.dataset.info;
+        detailsDialog.showModal();
+      });
+    });
+    closeDialog.addEventListener("click", function () { detailsDialog.close(); });
+
+    // Evento reset: al limpiar el formulario, se actualiza el mensaje.
+    gamerForm.addEventListener("reset", function () {
+      formMessage.textContent = "Formulario limpiado.";
+    });
+
+    // Evento submit: valida y muestra un resumen sin enviar datos a Internet.
+    gamerForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const gamerName = document.getElementById("gamerName").value.trim();
+      const favoriteGenre = document.getElementById("favoriteGenre").value;
+      const platform = gamerForm.querySelector('input[name="platform"]:checked');
+      const wantsNews = document.getElementById("newsCheck").checked;
+      formMessage.textContent = "¡Listo, " + gamerName + "! Género: " + favoriteGenre +
+        "; plataforma: " + platform.value + ". Novedades: " + (wantsNews ? "sí" : "no") +
+        ". (Demostración: no se enviaron datos a ningún servidor.)";
+    });
+
+    // Métodos DOM: getElementById, querySelector y querySelectorAll se usan arriba.
+    // Método reset() y envío controlado con submit se aplican al formulario.
+  </script>
+</body>
+</html>
